@@ -39,7 +39,7 @@ app.use(express.urlencoded({ limit: "50mb", extended: true }));
 const upload = multer({ dest: "uploads/" });
 
 // 홈 페이지 라우트에서 스낵 데이터를 가져와서 렌더링
-app.get("/", async (req, res) => {
+app.get("/admin", async (req, res) => {
   try {
     const response = await axios.get(SNACK_URI);
     const snacks = response.data;

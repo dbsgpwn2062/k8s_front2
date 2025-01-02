@@ -32,7 +32,8 @@ window.onclick = function (event) {
 };
 
 function logout() {
-  document.cookie = "user=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"; // 쿠키 삭제
+  document.cookie =
+    "user=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/admin;"; // 쿠키 삭제
   location.reload(); // 페이지 새로고침하여 로그인 상태 갱신
 }
 window.logout = logout;
@@ -67,8 +68,6 @@ async function submitLogin(event) {
     showAlert("서버 오류. 나중에 다시 시도해 주세요.", false);
   }
 }
-
-
 
 // 알림 표시 함수
 function showAlert(message, type) {
@@ -105,5 +104,3 @@ window.addEventListener("load", () => {
     loginButton.setAttribute("onclick", "openModal()");
   }
 });
-
-
