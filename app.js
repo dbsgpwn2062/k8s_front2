@@ -105,7 +105,7 @@ app.post("/post", async (req, res) => {
 
   try {
     // back_snack 서비스로 POST 요청 보내기
-    const response = await axios.post("http://back_snack:3000/snacks", {
+    const response = await axios.post(SNACK_URI, {
       name,
       nutritionalIngredients,
       image,
@@ -133,11 +133,15 @@ app.post("/likesnack", async (req, res) => {
 
   try {
     const encodedSnackName = encodeURIComponent(snackName);
-    const response = await axios.post(`${LIKE_SNACK_URI}?name=${encodedSnackName}`, {}, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await axios.post(
+      `${LIKE_SNACK_URI}?name=${encodedSnackName}`,
+      {},
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
 
     if (response.status === 200) {
       res.status(200).json({ message: `Successfully liked ${snackName}` });
@@ -146,7 +150,9 @@ app.post("/likesnack", async (req, res) => {
     }
   } catch (error) {
     console.error("Error liking snack:", error);
-    res.status(500).json({ message: "An error occurred while liking the snack." });
+    res
+      .status(500)
+      .json({ message: "An error occurred while liking the snack." });
   }
 });
 
